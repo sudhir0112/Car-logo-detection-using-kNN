@@ -1,17 +1,16 @@
 from sklearn.neighbors import KNeighborsClassifier
 import joblib                                    #For storing ML model 
 from skimage import feature
-from skimage import exposure
 import cv2
 import os
 import time 
 from progress.bar import IncrementalBar
 
-inputPath='../input/'
-datasetPath='../dataset/'
-outputPath='../output/'
+inputPath = '../input/'
+datasetPath = '../dataset/'
+outputPath = '../output/'
 modelPath = '../model/'
-testImageName='test.jpg'
+testImageName =' test.jpg'
 modelName = 'carLogoModel.pkl'
 
 imageSize = (200,100)
@@ -63,8 +62,8 @@ def trainModel():
                 # update the data and labels
                 data.append(H)
                 labels.append(label)
-
     bar.finish()             
+
     # "train" the nearest neighbors classifier
     print ("[INFO] Training kNN classifier")
     model = KNeighborsClassifier(n_neighbors=1)
@@ -77,7 +76,6 @@ def trainModel():
     modelSize = round(os.stat(modelPath+modelName).st_size / (1024 * 1024),3)
     print('[INFO] ML Model size: ' + str(modelSize) + ' MB')
     return model
-
 
 trainModel()
 
